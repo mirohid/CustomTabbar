@@ -20,10 +20,14 @@ struct MainTabbarView: View {
     var body: some View {
         VStack {
             TabView(selection: $selectedTab) {
-                Text("Inbox").tag(0)
-                Text("Updates").tag(1)
-                Text("Community").tag(2)
-                Text("Calls").tag(3)
+                InboxView()
+                    .tag(0)
+                UpdatesView()
+                    .tag(1)
+                CommunityView()
+                    .tag(2)
+                CallsView()
+                    .tag(3)
             }
             CustomTabBar(selectedTab: $selectedTab, tabs: tabs)
                
@@ -60,7 +64,13 @@ struct CustomTabBar: View {
             }
         }
         .frame(height: 70)
-        .background(.ultraThinMaterial)
+        .background(
+            LinearGradient(
+                gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)), Color(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1))]),
+                startPoint: .leading,
+                endPoint: .trailing
+            )
+        )
         .cornerRadius(50)
         .padding(.horizontal, 16)
         .padding(.bottom, 30)
